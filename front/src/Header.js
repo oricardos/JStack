@@ -12,7 +12,7 @@ export default function Header({ title, children }) {
 }
 
 //Tipagem
-Header.PropTypes = {
+Header.propTypes = {
     title: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
 }
