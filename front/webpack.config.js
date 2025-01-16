@@ -9,6 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle[hash].js",
   },
+  mode: "development",
   module: {
     rules: [
       {
@@ -24,4 +25,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
   ],
+  devServer: {
+    port: 3000,
+  }
 };
