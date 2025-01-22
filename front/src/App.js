@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Post from "./Post";
-import { ThemeProvider} from './ThemeContext'
-
+import { ThemeProvider } from "./ThemeContext";
 
 
 function App() {
- 
   const [posts, setPosts] = useState([
     {
       id: Math.random(),
@@ -26,7 +24,6 @@ function App() {
     },
   ]);
 
- 
   const handleAddPost = () => {
     setPosts([
       ...posts,
