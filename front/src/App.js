@@ -13,6 +13,7 @@ function App() {
       body: "Corpo do post1",
       likes: 20,
       read: true,
+      removed: true,
     },
     {
       id: Math.random(),
@@ -21,6 +22,7 @@ function App() {
       body: "Corpo do post2",
       likes: 10,
       read: false,
+      removed: false,
     },
   ]);
 
@@ -39,7 +41,13 @@ function App() {
   };
 
   const handleRemovePost = (postId) => {
-    setPosts((prevState) => prevState.filter((post) => post.id !== postId));
+    setPosts((prevState) => prevState.map(
+      post => (
+        post.id === postId
+        ? { ...post, removed: true}
+        : post
+      )
+    ));
   };
 
   return (
