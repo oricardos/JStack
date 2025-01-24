@@ -18,9 +18,20 @@ module.exports = {
         use: "babel-loader",
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
+        test: /\.scss$/,
+        use: [
+          'style-loader', 
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]__[hash:base64:5]' // Configura o nome da classe gerada
+              },
+            }
+          },
+          'sass-loader'
+        ],
+      },
     ],
   },
   plugins: [
