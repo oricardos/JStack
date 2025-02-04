@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PostHeader from "./PostHeader";
+import PostHeader from "../PostHeader";
 import * as styles from "./Post.scss";
 
 console.log(styles);
