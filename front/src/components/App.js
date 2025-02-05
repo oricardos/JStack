@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Post from "./Post";
-import { ThemeProvider } from "./ThemeContext";
-
+import { ThemeProvider } from "../context/ThemeContext";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -41,13 +40,11 @@ function App() {
   };
 
   const handleRemovePost = (postId) => {
-    setPosts((prevState) => prevState.map(
-      post => (
-        post.id === postId
-        ? { ...post, removed: true}
-        : post
+    setPosts((prevState) =>
+      prevState.map((post) =>
+        post.id === postId ? { ...post, removed: true } : post
       )
-    ));
+    );
   };
 
   return (
