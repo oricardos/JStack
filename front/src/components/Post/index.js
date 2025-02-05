@@ -1,19 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PostHeader from "../PostHeader";
-import * as styles from "./Post.scss";
-import { Subtitle, Likes } from "./styles";
+import { Container, Subtitle, Likes } from "./styles";
 
-console.log(styles);
 export default function Post({ post, onRemove }) {
   return (
-    <article className={post.removed ? styles.postRemoved : styles.post}>
+    <Container removed={post.removed}>
       <PostHeader post={post} onRemove={onRemove} />
       <br />
       <span>{post.subtitle}</span>
       <Subtitle>{post.body}</Subtitle>
       <Likes>Likes: {post.likes}</Likes>
-    </article>
+    </Container>
   );
 }
 
