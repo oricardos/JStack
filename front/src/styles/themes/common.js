@@ -4,5 +4,5 @@ export default {
     medium: 16,
     large: 24,
   },
-  borderRadius: '10px',
+  borderRadius: "10px",
 };
