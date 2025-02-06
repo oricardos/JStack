@@ -1,26 +1,30 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "./styles/global";
 import Layout from "./components/Layout";
+import { TemaProvider, ThemeContext } from "./context/ThemeContext";
 
-import themes from "./styles/themes";
+//TODO criar context para não passar as coisas por props
+//TODO trocar valores do common styles por theme
+//TODO cria custom hooks para salvar o theme no localstorage
+
+//TODO tentar fazer sem chatgpt
 
 function App() {
-  const [theme, setTheme] = useState("dark");
+  return (
+    <TemaProvider>
+      <ThemeConsumer />
+    </TemaProvider>
+  );
+}
 
-  const currentTheme = useMemo(() => {
-    return themes[theme] || themes.dark;
-  }, [theme]);
-
-  function handleToggleTheme() {
-    setTheme((prevState) => (prevState === "dark" ? "light" : "dark"));
-  }
-
+function ThemeConsumer() {
+  const { currentTheme } = useContext(ThemeContext);
   return (
     <ThemeProvider theme={currentTheme}>
       <GlobalStyle />
-      <Layout onToggleTheme={handleToggleTheme} selectedTheme={theme} />
+      <Layout />
     </ThemeProvider>
   );
 }

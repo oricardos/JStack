@@ -7,9 +7,9 @@ import Footer from "../Footer";
 export default function Layout({ onToggleTheme, selectedTheme }) {
   return (
     <>
-      <Header onToggleTheme={onToggleTheme} selectedTheme={selectedTheme} />
+      <Header />
       <PostsList />
-      <Footer onToggleTheme={onToggleTheme} selectedTheme={selectedTheme} />
+      <Footer />
     </>
   );
 }
