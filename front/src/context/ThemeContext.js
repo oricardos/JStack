@@ -1,12 +1,14 @@
-import React, { createContext, useState, useMemo } from "react";
+import React, { createContext, useState, useMemo, useEffect } from "react";
 import themes from "../styles/themes";
 
 export const ThemeContext = createContext();
 
 export function TemaProvider({ children }) {
-  const [theme, setTheme] = useState("dark");
+  const themeByLocalStorage = localStorage.getItem("theme");
+  const [theme, setTheme] = useState(themeByLocalStorage);
 
   const currentTheme = useMemo(() => {
+    localStorage.setItem("theme", theme);
     return themes[theme] || themes.dark;
   }, [theme]);
 

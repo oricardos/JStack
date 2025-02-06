@@ -5,7 +5,6 @@ import GlobalStyle from "./styles/global";
 import Layout from "./components/Layout";
 import { TemaProvider, ThemeContext } from "./context/ThemeContext";
 
-//TODO trocar valores do common styles por theme
 //TODO cria custom hooks para salvar o theme no localstorage
 
 //TODO tentar fazer sem chatgpt
