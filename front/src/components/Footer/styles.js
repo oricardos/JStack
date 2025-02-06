@@ -5,10 +5,10 @@ export const Container = styled.footer`
   height: 70px;
   display: flex;
   align-items: center;
-  padding: 0 24px;
-  border-radius: 10px;
+  padding: 0 ${({ theme }) => theme.large};
+  border-radius: ${({ theme }) => theme.borderRadius};
   justify-content: space-between;
-  margin-top: 24px;
+  margin-top: ${({ theme }) => theme.large};
 
   button {
     cursor: pointer;

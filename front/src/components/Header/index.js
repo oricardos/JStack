@@ -5,7 +5,6 @@ import { ThemeContext } from "../../context/ThemeContext";
 
 export default function Header() {
   const { handleToggleTheme, currentTheme } = useContext(ThemeContext);
-  console.log(currentTheme);
   return (
     <Container>
       <h1>JStack's Blog</h1>

@@ -5,7 +5,6 @@ import GlobalStyle from "./styles/global";
 import Layout from "./components/Layout";
 import { TemaProvider, ThemeContext } from "./context/ThemeContext";
 
-//TODO criar context para não passar as coisas por props
 //TODO trocar valores do common styles por theme
 //TODO cria custom hooks para salvar o theme no localstorage
 
