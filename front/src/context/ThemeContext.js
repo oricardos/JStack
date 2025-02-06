@@ -8,7 +8,7 @@ export function TemaProvider({ children }) {
   const [theme, setTheme] = useState(themeByLocalStorage);
 
   const currentTheme = useMemo(() => {
-    localStorage.setItem("theme", theme);
+    localStorage.setItem("theme", JSON.stringify(theme));
     return themes[theme] || themes.dark;
   }, [theme]);
 
