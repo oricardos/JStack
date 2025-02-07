@@ -16,8 +16,6 @@ export function TemaProvider({ children }) {
     setTheme((prevState) => (prevState === "dark" ? "light" : "dark"));
   }
 
-  console.table(theme, handleToggleTheme, currentTheme);
-
   return (
     <ThemeContext.Provider value={{ theme, handleToggleTheme, currentTheme }}>
       {children}

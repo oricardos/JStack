@@ -1,13 +1,9 @@
-import React, { useState, useMemo, useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "./styles/global";
 import Layout from "./components/Layout";
 import { TemaProvider, ThemeContext } from "./context/ThemeContext";
-
-//TODO cria custom hooks para salvar o theme no localstorage
-
-//TODO tentar fazer sem chatgpt
 
 function App() {
   return (
@@ -19,6 +15,18 @@ function App() {
 
 function ThemeConsumer() {
   const { currentTheme } = useContext(ThemeContext);
+
+  const firstRender = useRef(true);
+
+  //evitando primeiro render
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+    }
+
+    console.log("mudou");
+  }, [currentTheme]);
+
   return (
     <ThemeProvider theme={currentTheme}>
       <GlobalStyle />
