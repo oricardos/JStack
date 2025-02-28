@@ -5,12 +5,14 @@ import GlobalStyle from "./styles/global";
 import Layout from "./components/Layout";
 import { TemaProvider, ThemeContext } from "./context/ThemeContext";
 
-function App() {
-  return (
-    <TemaProvider>
-      <ThemeConsumer />
-    </TemaProvider>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <TemaProvider>
+        <ThemeConsumer />
+      </TemaProvider>
+    );
+  }
 }
 
 function ThemeConsumer() {
@@ -23,8 +25,6 @@ function ThemeConsumer() {
     if (firstRender.current) {
       firstRender.current = false;
     }
-
-    console.log("mudou");
   }, [currentTheme]);
 
   return (
