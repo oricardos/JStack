@@ -1,30 +1,61 @@
-import React, { useState, useMemo, useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "./styles/global";
 import Layout from "./components/Layout";
 import { TemaProvider, ThemeContext } from "./context/ThemeContext";
 
-//TODO cria custom hooks para salvar o theme no localstorage
+class App extends React.Component {
+  state = {
+    changed: false,
+  };
 
-//TODO tentar fazer sem chatgpt
+  componentDidMount() {
+    console.log("componentDidMount executed"); // equivalente à useEffect(() => {}, []) executa uma vez, quando o componente é montado
+  }
 
-function App() {
-  return (
-    <TemaProvider>
-      <ThemeConsumer />
-    </TemaProvider>
-  );
-}
+  componentDidUpdate(prevProps, prevState) {
+    console.log({
+      currentState: this.state,
+      prevProps,
+      prevState,
+    });
+  }
 
-function ThemeConsumer() {
-  const { currentTheme } = useContext(ThemeContext);
-  return (
-    <ThemeProvider theme={currentTheme}>
-      <GlobalStyle />
-      <Layout />
-    </ThemeProvider>
-  );
+  componentDidCatch(error, info) {
+    console.log({ error, info });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log({
+      currentState: this.state,
+      nextProps,
+      nextState,
+    });
+
+    return true;
+  }
+
+  componentWillUnmount() {}
+
+  render() {
+    console.log("rendered"); // equivalente à useEffect(() =>{}) executa sempre que o componente é renderizado
+    return (
+      <TemaProvider>
+        <button onClick={() => this.setState({ changed: true })}>
+          Change State
+        </button>
+        <ThemeContext.Consumer>
+          {(contextData) => (
+            <ThemeProvider theme={contextData.currentTheme}>
+              <GlobalStyle />
+              <Layout />
+            </ThemeProvider>
+          )}
+        </ThemeContext.Consumer>
+      </TemaProvider>
+    );
+  }
 }
 
 export default App;

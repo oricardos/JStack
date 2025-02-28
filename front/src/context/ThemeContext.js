@@ -8,15 +8,13 @@ export function TemaProvider({ children }) {
   const [theme, setTheme] = useState(themeByLocalStorage);
 
   const currentTheme = useMemo(() => {
-    localStorage.setItem("theme", theme);
+    localStorage.setItem("theme", JSON.stringify(theme));
     return themes[theme] || themes.dark;
   }, [theme]);
 
   function handleToggleTheme() {
     setTheme((prevState) => (prevState === "dark" ? "light" : "dark"));
   }
-
-  console.table(theme, handleToggleTheme, currentTheme);
 
   return (
     <ThemeContext.Provider value={{ theme, handleToggleTheme, currentTheme }}>
