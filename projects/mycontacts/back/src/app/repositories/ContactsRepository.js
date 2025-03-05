@@ -1,0 +1,64 @@
+const { v4 } = require("uuid");
+
+let contacts = [
+    {
+        id: v4(),
+        name: "Ricardo",
+        email: "ricardo@mail.com",
+        phone: "12345678",
+        category_id: v4(),
+    },
+    {
+        id: v4(),
+        name: "Karen",
+        email: "karen@mail.com",
+        phone: "12345678",
+        category_id: v4(),
+    },
+];
+
+class ContactsRepository {
+    findAll() {
+        return new Promise((resolve) => {
+            resolve(contacts);
+        });
+    }
+
+    findById(id) {
+        return new Promise((resolve) => {
+            resolve(contacts.find((contact) => contact.id === id))
+        });
+    }
+
+    findByEmail(email) {
+        return new Promise((resolve) => {
+            resolve(contacts.find((contact) => contact.email === email))
+        });
+    }
+
+    delete(id) {
+        return new Promise((resolve) => {
+            contacts = contacts.filter((contact) => contact.id !== id)
+            resolve();
+        })
+    }
+
+    create({
+        name,
+        email,
+        phone,
+        category_id
+    }) {
+        return new Promise((resolve) => {
+            const newContact = {
+                id: v4(),
+                name, email, phone, category_id
+            }
+
+            contacts.push(newContact)
+            resolve(newContact);
+        })
+    }
+}
+
+module.exports = new ContactsRepository();
