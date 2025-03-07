@@ -20,8 +20,9 @@ let contacts = [
 ];
 
 class ContactsRepository {
-    async findAll() {
-        const rows = await db.query('SELECT * FROM contacts');
+    async findAll(orderBy = 'ASC') { // seta um valor defaul, caso não seja mandado nada
+        const direction = orderBy?.toUpperCase() === 'DESC' ? 'DESC' : 'ASC'; // se o valor de orderBy for diferente de 'DESC', sempre será ASC, evitando SQLInjection
+        const rows = await db.query(`SELECT * FROM contacts ORDER BY name ${direction}`);
         return rows
     }
 
