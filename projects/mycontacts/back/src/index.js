@@ -1,5 +1,6 @@
-const express = require("express");
-const routes = require("./routes");
+const express = require('express');
+const routes = require('./routes');
+require('express-async-errors');
 
 const app = express();
 
@@ -9,4 +10,10 @@ app.use(express.json());
 // o express interpreta as rotas como Middlewares, por isso o use
 app.use(routes);
 
-app.listen(3000, () => console.log("Server started at http://localhost:3000"));
+// o error handler sempre deve vir depois das rotas
+app.use((error, request, response, next) => {
+    console.log(error);
+    response.sendStatus(500);
+});
+
+app.listen(3000, () => console.log('Server started at http://localhost:3000'));
