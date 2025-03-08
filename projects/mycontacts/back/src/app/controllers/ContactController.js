@@ -1,17 +1,16 @@
 const ContactsRepository = require("../repositories/ContactsRepository");
 
 class ContactController {
+    // Listar todos os registros
     async index(request, response) {
-        // Listar todos os registros
-
         const { orderBy } = request.query;
         const contacts = await ContactsRepository.findAll(orderBy);
 
         response.json(contacts);
     }
 
+    // obter um registro
     async show(request, response) {
-        // obter um registro
         const { id } = request.params
         const contact = await ContactsRepository.findById(id)
 
@@ -23,8 +22,8 @@ class ContactController {
 
     }
 
+    // criar um novo registro
     async store(request, response) {
-        // criar um novo registro
         const { name, email, phone, category_id } = request.body
 
         if (!name) {
@@ -44,8 +43,8 @@ class ContactController {
         response.json(contact)
     }
 
+    // atualizar um registro
     async update(request, response) {
-        // atualizar um registro
         const { id } = request.params
         const { name, email, phone, category_id } = request.body
 
@@ -75,8 +74,8 @@ class ContactController {
         response.json(contact)
     }
 
+    // deletar um registro
     async delete(request, response) {
-        // deletar um registro
         const { id } = request.params;
 
         await ContactsRepository.delete(id)
